@@ -24,7 +24,7 @@ export default function Home () {
               <p className='p2'>1-minute quiz</p>
               <div className='grid grid-cols-2 gap-3'>
                 {data.map((data: any, index) => {
-                  return <CardAuthor data={data} index={index} />
+                  return <CardAuthor data={data} index={index} key={index} />
                 })}
               </div>
             </div>

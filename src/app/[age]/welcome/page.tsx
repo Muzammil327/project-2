@@ -3,8 +3,9 @@ import { Navbar2 } from '@/components/layout/Navbar'
 import Link from 'next/link'
 import React from 'react'
 import { usePathname } from 'next/navigation'
+import Image from 'next/image'
 
-export default function page () {
+export default function Page () {
   const pathname = usePathname()
   return (
     <div className='main font1'>
@@ -44,9 +45,9 @@ export default function page () {
               have trusted Leaply
             </p>
             {pathname === '/men/welcome' ? (
-              <img src='/1-1-1.webp' alt='' className='img1' />
+              <Image src='/1-1-1.webp' alt='' className='img1' height={400} width={400} />
             ) : (
-              <img src='/2-2-2.webp' alt='' className='img1' />
+              <Image src='/2-2-2.webp' alt='' className='img1' height={400} width={400} />
             )}
           </div>
 

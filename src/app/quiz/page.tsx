@@ -185,7 +185,39 @@
 //       )}
 
 //       {endScreen && (
-       
+//         <div className='main font1'>
+//           <main className='wrapper'>
+//             <React.Fragment>
+//               <Navbar2 />
+//               <div className='end-screen'>
+//                 <div className='mb-28'>
+//                   <Image
+//                     alt='Illustration'
+//                     width='488'
+//                     height='329'
+//                     src='/end.webp'
+//                     className='mt-9'
+//                   />
+//                   <h2 className='font2'>
+//                     The reasons for feeling off are deeper than you might think.
+//                   </h2>
+//                   <p className=''>
+//                     Symptoms such as stress, anxiety, chronic fatigue,
+//                     procrastination, brain fog, and emotional eating are often
+//                     caused by{' '}
+//                     <strong className='font-bold text-[#ba4949]'>
+//                       irritation of the Vagus Nerve
+//                     </strong>
+//                     .
+//                   </p>
+//                 </div>
+//                 <button className='fixed bottom-4 left-0 right-0 z-50 mx-auto w-full max-w-[23rem] btn2'>
+//                   Continue
+//                 </button>
+//               </div>
+//             </React.Fragment>
+//           </main>
+//         </div>
 //       )}
 //     </React.Fragment>
 //   )

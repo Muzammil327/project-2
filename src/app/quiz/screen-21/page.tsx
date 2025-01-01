@@ -12,9 +12,9 @@ export default function page () {
           <p>
             The Vagus Nerve is like{' '}
             <strong className='font-bold text-[#3a7968]'>
-              your body's superhighway,
+              your body&apos;s superhighway,
             </strong>{' '}
-            connecting your brain to many important organs. When it's not
+            connecting your brain to many important organs. When it&apos;s not
             working properly, it contributes to stress, fatigue, brain fog, and
             even digestive issues.
           </p>
