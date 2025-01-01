@@ -1,0 +1,282 @@
+'use client'
+import React, { useEffect, useState } from 'react'
+import { Navbar2 } from '@/components/layout/Navbar'
+import { Typewriter } from 'react-simple-typewriter'
+import Image from 'next/image'
+
+export const quizData = [
+  {
+    id: 1,
+    title: 'How often do you feel stressed or anxious?',
+    description:
+      'Memory lapses can sometimes be caused by stress, fatigue, or lack of focus.',
+    options: ['Never', 'Rarely', 'Often', 'All the time'],
+    correctOption: 'Often'
+  },
+  {
+    id: 2,
+    title: 'Do you experience brain fog or difficulty concentrating?',
+    description:
+      'Memory lapses can sometimes be caused by stress, fatigue, or lack of focus.',
+    options: ['Never', 'Rarely', 'Often', 'All the time'],
+    correctOption: 'Rarely'
+  },
+  {
+    id: 3,
+    title: 'Do you have trouble remembering things or feel forgetful?',
+    description:
+      'Memory lapses can sometimes be caused by stress, fatigue, or lack of focus.',
+    options: ['Never', 'Sometimes', 'Often', 'Always'],
+    correctOption: 'Never'
+  },
+  {
+    id: 4,
+    title: "I'm often fatigued and my energy levels aren't steady.",
+    description:
+      'Fatigue can result from poor sleep, diet, or underlying health issues.',
+    options: ['Never', 'Sometimes', 'Often', 'Always'],
+    correctOption: 'Sometimes'
+  },
+  {
+    id: 5,
+    title: 'Do you sometimes feel dizzy or groggy?',
+    description:
+      'Fatigue can result from poor sleep, diet, or underlying health issues.',
+    options: ['Never', 'Sometimes', 'Often', 'Always'],
+    correctOption: 'Sometimes'
+  },
+
+  {
+    id: 6,
+    title: 'Do you sometimes feel off balance or disoriented?',
+    description:
+      'Memory lapses can sometimes be caused by stress, fatigue, or lack of focus.',
+    options: ['Never', 'Rarely', 'Often', 'All the time'],
+    correctOption: 'Often'
+  },
+  {
+    id: 7,
+    title: 'Do you find it difficult to relax or unwind?',
+    description:
+      'Memory lapses can sometimes be caused by stress, fatigue, or lack of focus.',
+    options: ['Never', 'Rarely', 'Often', 'All the time'],
+    correctOption: 'Often'
+  },
+  {
+    id: 8,
+    title: 'Do you find it difficult to relax or unwind?',
+    description:
+      'Memory lapses can sometimes be caused by stress, fatigue, or lack of focus.',
+    options: ['Never', 'Rarely', 'Often', 'All the time'],
+    correctOption: 'Often'
+  }
+]
+
+const QuizComponent = () => {
+  const [selectedOption, setSelectedOption] = useState<number | null>(null)
+  const [isCorrect, setIsCorrect] = useState<boolean | null>(null)
+  const [currentStep, setCurrentStep] = useState(0)
+  const [endScreen, setEndScreen] = useState(false)
+
+  const calculateProgress = () => {
+    return Math.round(((currentStep + 1) / quizData.length) * 100)
+  }
+
+  const handleOptionClick = (index: number) => {
+    setSelectedOption(index)
+    const isAnswerCorrect =
+      quizData[currentStep].options[index] ===
+      quizData[currentStep].correctOption
+    setIsCorrect(isAnswerCorrect)
+
+    if (isAnswerCorrect) {
+      setTimeout(() => {
+        moveToNextQuestion()
+      }, 1500)
+    }
+  }
+
+  const moveToNextQuestion = () => {
+    if (currentStep < quizData.length - 1) {
+      setCurrentStep(currentStep + 1)
+      setSelectedOption(null)
+      setIsCorrect(null)
+    } else {
+      setEndScreen(true)
+    }
+  }
+
+  return (
+    <React.Fragment>
+      {!endScreen && (
+        <div className='!bg-[#f6f7f9] main font1'>
+          <main className='wrapper'>
+            <Navbar2 progressValue={calculateProgress()} bg='bg-[#f6f7f9]' />
+            <div>
+              <Heading2 title={quizData[currentStep].title} />
+              <Description currentStep={currentStep} isCorrect={isCorrect} />
+              <QuizComp
+                currentStep={currentStep}
+                selectedOption={selectedOption}
+                isCorrect={isCorrect}
+                handleOptionClick={handleOptionClick}
+                checkbox={true}
+              />
+            </div>
+            <ContinueButton
+              onClick={moveToNextQuestion}
+              isCorrect={isCorrect}
+            />
+          </main>
+        </div>
+      )}
+
+      {endScreen && (
+        <div className='main font1'>
+          <main className='wrapper'>
+            <React.Fragment>
+              <Navbar2 />
+              <div className='end-screen'>
+                <div className='mb-28'>
+                  <Image
+                    alt='Illustration'
+                    width='488'
+                    height='329'
+                    src='/end.webp'
+                    className='mt-9'
+                  />
+                  <h2 className='font2'>
+                    The reasons for feeling off are deeper than you might think.
+                  </h2>
+                  <p className=''>
+                    Symptoms such as stress, anxiety, chronic fatigue,
+                    procrastination, brain fog, and emotional eating are often
+                    caused by{' '}
+                    <strong className='font-bold text-[#ba4949]'>
+                      irritation of the Vagus Nerve
+                    </strong>
+                    .
+                  </p>
+                </div>
+                <button className='fixed bottom-4 left-0 right-0 z-50 mx-auto w-full max-w-[23rem] btn2'>
+                  Continue
+                </button>
+              </div>
+            </React.Fragment>
+          </main>
+        </div>
+      )}
+    </React.Fragment>
+  )
+}
+
+export default QuizComponent
+
+function ContinueButton ({ onclick, isCorrect }: any) {
+  return (
+    <React.Fragment>
+      {isCorrect === false && (
+        <button
+          className='fixed bottom-4 left-0 right-0 z-50 mx-auto w-full max-w-[23rem] btn2'
+          onClick={onclick}
+        >
+          Continue
+        </button>
+      )}
+    </React.Fragment>
+  )
+}
+
+function Heading2 ({ title }: { title: string }) {
+  return <h2 className='h21 font2 mb-8 text-center mt-10'>{title}</h2>
+}
+
+function Description ({ currentStep, isCorrect }: any) {
+  return (
+    <React.Fragment>
+      {isCorrect === false && (
+        <div className='description mb-3'>
+          <span className='text-base'>🤔</span>
+          <div>
+            <h3
+              style={{
+                fontSize: '.875rem',
+                fontWeight: '700',
+                letterSpacing: '-.025em'
+              }}
+            >
+              <span>You might wonder why...</span>
+            </h3>
+
+            <article
+              style={{
+                fontSize: '.75rem',
+                fontWeight: '400',
+                letterSpacing: '-.025em'
+              }}
+            >
+              <Typewriter
+                words={[quizData[currentStep].description]}
+                cursor
+                cursorStyle='|'
+                typeSpeed={70}
+                deleteSpeed={50}
+                delaySpeed={1000}
+              />
+            </article>
+          </div>
+        </div>
+      )}
+    </React.Fragment>
+  )
+}
+
+function QuizComp ({
+  currentStep,
+  selectedOption,
+  isCorrect,
+  handleOptionClick,
+  checkbox
+}: any) {
+  return (
+    <React.Fragment>
+      {quizData[currentStep].options.map((option, index) => (
+        <button
+          key={index}
+          className={`btn3 ${
+            checkbox ? 'flex items-center justify-between' : ''
+          } ${
+            selectedOption === index
+              ? 'border-4 !border-black'
+              : 'border border-gray-300'
+          } ${
+            isCorrect === false &&
+            index === quizData[currentStep].options.length - 1
+              ? 'mb-20'
+              : 'mb-4'
+          }`}
+          onClick={() => handleOptionClick(index)}
+          disabled={isCorrect !== null}
+        >
+          <div>
+            <span className='icon mr-2'>😊</span>
+            <span>{option}</span>
+          </div>
+          {/* {checkbox && <Checkbox />} */}
+        </button>
+      ))}
+    </React.Fragment>
+  )
+}
+
+function Checkbox () {
+  return (
+    <div className='checkbox'>
+      <input type='checkbox' name='stressAffects' value='performance' />
+    </div>
+  )
+}
+
+function SpanText ({ children }: any) {
+  return <span>{children}</span>
+}
