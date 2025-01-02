@@ -51,7 +51,7 @@ export default function Page () {
             )}
           </div>
 
-          <Link href='/hello'>
+          <Link href='/quiz'>
             <button
               type='button'
               className='fixed bottom-4 left-0 right-0 z-50 mx-auto w-full max-w-[23rem] btn2'
