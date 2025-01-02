@@ -1,0 +1,14 @@
+
+  .modalButton {
+    border: 0;
+    cursor: pointer;
+    padding: .75em 2em;
+    flex: 1 0;
+    border-radius: .5rem;
+    background: #3a7968;
+    color: #fff;
+    font-size: .875rem;
+    font-weight: 700;
+    line-height: 1.25rem;
+  }
+  

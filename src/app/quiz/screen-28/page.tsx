@@ -5,7 +5,7 @@ import { QuizLayout } from '@/components/quiz/page'
 export default function page () {
   return (
     <QuizLayout
-      progressValue={73}
+      progressValue={77}
       nextRoute='/quiz/screen-29'
       backRoute='/quiz/screen-27'
       data={{
