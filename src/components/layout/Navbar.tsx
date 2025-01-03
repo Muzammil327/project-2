@@ -98,7 +98,7 @@ export function Navbar2 ({
 
 export function Navbar4 ({ bg = 'bg-white' }: { bg?: string }) {
   return (
-    <header className={`${bg} sticky top-0 z-50 w-full left-0 right-0 pt-[1.2rem] pr-[0.5rem] pb-[0.5rem] pl-[1.25rem]`}
+    <header className={`${bg} sticky top-0 z-50 w-full left-0 right-0 pt-[1.1rem] pr-[1rem] pb-[0.25rem] pl-[1rem]`}
     >
       <div className='flex items-center justify-between mb-4'>
         <div className='flex-grow flex justify-center'>
